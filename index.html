@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Data Analytics Certification Course</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.5;
+            color: #ffffff;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 25%, #404040 50%, #2d2d2d 75%, #1a1a1a 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: radial-gradient(ellipse at center, rgba(63, 81, 231, 0.15) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.95) 100%);
+        }
+
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(63, 81, 231, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 92, 119, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(63, 81, 231, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(63, 81, 231, 0.05) 0%, rgba(255, 92, 119, 0.05) 100%);
+            animation: bgFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes bgFloat {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg) scale(1); 
+                opacity: 1;
+            }
+            25% { 
+                transform: translateY(-30px) rotate(1deg) scale(1.05); 
+                opacity: 0.8;
+            }
+            50% { 
+                transform: translateY(20px) rotate(-0.5deg) scale(0.95); 
+                opacity: 0.9;
+            }
+            75% { 
+                transform: translateY(-15px) rotate(0.8deg) scale(1.02); 
+                opacity: 0.85;
+            }
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            margin-bottom: 60px;
+            margin-top: 80px;
+            animation: slideInTop 1.5s ease-out;
+        }
+
+        @keyframes slideInTop {
+            from { opacity: 0; transform: translateY(-100px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo-placeholder {
+            width: 160px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #2c3e50;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: logoFloat 3s ease-in-out infinite;
+            backdrop-filter: blur(25px);
+            border: 3px solid rgba(63, 81, 231, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(63, 81, 231, 0.3), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .logo-placeholder:hover::before {
+            left: 100%;
+        }
+
+        .logo-placeholder:hover {
+            transform: translateY(-15px) scale(1.1);
+            box-shadow: 0 30px 80px rgba(63, 81, 231, 0.4);
+        }
+
+        .logo-placeholder:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .logo-placeholder:nth-child(2) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-10px) scale(1.05); }
+        }
+
+        .main-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #3f51e7, #ff5c77, #ffffff, #3f51e7);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease-in-out infinite, titleFadeIn 2s ease-out;
+            text-shadow: 2px 2px 20px rgba(63, 81, 231, 0.3);
+            max-width: 1200px;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes titleFadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #bdc3c7;
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 35px;
+            animation: subtitleFadeIn 2.5s ease-out;
+            max-width: 800px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes subtitleFadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .course-description {
+            max-width: 950px;
+            text-align: center;
+            font-size: 1.4rem;
+            color: #ecf0f1;
+            margin-bottom: 55px;
+            line-height: 1.6;
+            animation: descFadeIn 3s ease-out;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        @keyframes descFadeIn {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modes-title {
+            font-size: 2.5rem;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+            animation: modesTitleFadeIn 3.5s ease-out;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes modesTitleFadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .course-modes {
+            display: flex;
+            gap: 50px;
+            justify-content: center;
+            margin-bottom: 80px;
+            animation: modesFadeIn 4s ease-out;
+        }
+
+        @keyframes modesFadeIn {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mode-card {
+            background: linear-gradient(135deg, rgba(40, 40, 40, 0.95) 0%, rgba(30, 30, 30, 0.95) 100%);
+            backdrop-filter: blur(25px);
+            border-radius: 35px;
+            padding: 55px 45px;
+            width: 380px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+        }
+
+        .mode-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(63, 81, 231, 0.4), transparent);
+            transition: left 1s ease;
+        }
+
+        .mode-card:hover::before {
+            left: 100%;
+        }
+
+        .mode-card:hover {
+            transform: translateY(-25px) scale(1.08);
+            border-color: #3f51e7;
+            box-shadow: 0 50px 120px rgba(63, 81, 231, 0.5);
+        }
+
+        .mode-card.active {
+            border-color: #ff5c77;
+            background: linear-gradient(135deg, rgba(255, 92, 119, 0.2) 0%, rgba(30, 30, 30, 0.95) 100%);
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .mode-icon {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .mode-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            letter-spacing: -0.02em;
+        }
+
+        .mode-description {
+            color: #bdc3c7;
+            font-size: 1.2rem;
+            line-height: 1.7;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+
+        .content-section {
+            display: none;
+            animation: contentSlideIn 0.8s ease-out;
+            min-height: 100vh;
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(40, 40, 40, 0.95) 0%, rgba(30, 30, 30, 0.95) 100%);
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes contentSlideIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+            animation: sectionTitleFadeIn 1s ease-out;
+        }
+
+        @keyframes sectionTitleFadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 30px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #ff5c77 0%, #3f51e7 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            animation: backBtnFadeIn 1.2s ease-out;
+        }
+
+        @keyframes backBtnFadeIn {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 92, 119, 0.4);
+        }
+
+        .course-outline {
+            display: grid;
+            gap: 30px;
+            margin-bottom: 50px;
+            animation: outlineFadeIn 1.5s ease-out;
+        }
+
+        @keyframes outlineFadeIn {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .module {
+            background: linear-gradient(135deg, rgba(63, 81, 231, 0.12) 0%, rgba(255, 92, 119, 0.08) 100%);
+            border-radius: 25px;
+            padding: 35px;
+            border-left: 8px solid #3f51e7;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(63, 81, 231, 0.2);
+            animation: moduleSlideIn 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .module:nth-child(1) { animation-delay: 0.1s; }
+        .module:nth-child(2) { animation-delay: 0.2s; }
+        .module:nth-child(3) { animation-delay: 0.3s; }
+        .module:nth-child(4) { animation-delay: 0.4s; }
+        .module:nth-child(5) { animation-delay: 0.5s; }
+        .module:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes moduleSlideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .module:hover {
+            transform: translateX(15px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(63, 81, 231, 0.3);
+            border-left-color: #ff5c77;
+        }
+
+        .module-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .module-details {
+            color: #bdc3c7;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+            background: rgba(40, 40, 40, 0.9);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            animation: tableFadeIn 2s ease-out;
+        }
+
+        @keyframes tableFadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .schedule-table th {
+            background: linear-gradient(135deg, #3f51e7 0%, #ff5c77 100%);
+            color: white;
+            padding: 25px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .schedule-table td {
+            padding: 20px 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            color: #ecf0f1;
+            font-size: 1rem;
+        }
+
+        .schedule-table tr:hover td {
+            background-color: rgba(63, 81, 231, 0.2);
+            transform: scale(1.01);
+        }
+
+        .total-hours {
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-top: 40px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(63, 81, 231, 0.3) 0%, rgba(255, 92, 119, 0.3) 100%);
+            border-radius: 20px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+            animation: totalHoursFadeIn 2.5s ease-out;
+        }
+
+        @keyframes totalHoursFadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .hybrid-schedule {
+            margin-top: 50px;
+            animation: hybridFadeIn 3s ease-out;
+        }
+
+        @keyframes hybridFadeIn {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .porto-title {
+            font-size: 2.2rem;
+            color: #ffffff;
+            margin-bottom: 40px;
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(255, 92, 119, 0.3) 0%, rgba(63, 81, 231, 0.3) 100%);
+            border-radius: 20px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+            font-weight: 600;
+        }
+
+        .week-schedule {
+            display: grid;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .day-schedule {
+            background: linear-gradient(135deg, rgba(63, 81, 231, 0.12) 0%, rgba(255, 92, 119, 0.08) 100%);
+            border-radius: 25px;
+            padding: 30px;
+            border-left: 6px solid #3f51e7;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            animation: daySlideIn 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .day-schedule:nth-child(1) { animation-delay: 0.2s; }
+        .day-schedule:nth-child(2) { animation-delay: 0.4s; }
+        .day-schedule:nth-child(3) { animation-delay: 0.6s; }
+        .day-schedule:nth-child(4) { animation-delay: 0.8s; }
+        .day-schedule:nth-child(5) { animation-delay: 1s; }
+
+        @keyframes daySlideIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .day-schedule:hover {
+            transform: translateX(-10px);
+            box-shadow: 0 15px 40px rgba(63, 81, 231, 0.2);
+        }
+
+        .day-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .day-title::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #3f51e7;
+            box-shadow: 0 0 15px rgba(63, 81, 231, 0.6);
+            animation: dotPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes dotPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+        }
+
+        .time-slot {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+            gap: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .time-slot:hover {
+            transform: translateX(10px);
+        }
+
+        .time {
+            font-weight: 600;
+            color: #3f51e7;
+            min-width: 100px;
+            font-size: 1rem;
+        }
+
+        .activity {
+            color: #ecf0f1;
+            flex: 1;
+            font-size: 1rem;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, rgba(40, 40, 40, 0.95) 0%, rgba(30, 30, 30, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px;
+            margin: 50px auto;
+            max-width: 1200px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: contactFadeIn 3.5s ease-out;
+        }
+
+        @keyframes contactFadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 40px;
+            text-align: center;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, rgba(63, 81, 231, 0.15) 0%, rgba(255, 92, 119, 0.15) 100%);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(63, 81, 231, 0.3);
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            color: #3f51e7;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-info p {
+            color: #ecf0f1;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-info a {
+            color: #3f51e7;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #ff5c77;
+            text-shadow: 0 0 10px rgba(255, 92, 119, 0.5);
+        }
+
+        .enquiry-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: #ecf0f1;
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 18px;
+            border: 2px solid rgba(63, 81, 231, 0.4);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(15px);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3f51e7;
+            box-shadow: 0 0 25px rgba(63, 81, 231, 0.4);
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.02);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .submit-btn {
+            grid-column: 1 / -1;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #3f51e7 0%, #ff5c77 100%);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 15px 40px rgba(63, 81, 231, 0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 25px 60px rgba(255, 92, 119, 0.5);
+            background: linear-gradient(135deg, #ff5c77 0%, #3f51e7 100%);
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .logo-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .course-modes {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+            
+            .mode-card {
+                width: 100%;
+                max-width: 400px;
+            }
+            
+            .enquiry-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section" id="hero">
+        <div class="animated-bg"></div>
+        
+        <div class="logo-container">
+            <div class="logo-placeholder">
+                <img src="woxsen-logo.png" alt="Woxsen University" style="max-width: 90%; max-height: 90%; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span style="display: none;">WOXSEN</span>
+            </div>
+            <div class="logo-placeholder">
+                <img src="porto.png" alt="Porto Business School" style="max-width: 90%; max-height: 90%; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span style="display: none;">PORTO</span>
+            </div>
+        </div>
+
+        <h1 class="main-title">Sports Data Analytics Certification Course</h1>
+        <p class="subtitle">offered by<br>CoE- Sports Analytics and Management, Woxsen University, India<br> & <br>Porto Business School, University of Porto, Portugal</p>
+        
+        <div class="course-description">
+            This comprehensive program combines cutting-edge data science techniques with real-world sports analytics applications to prepare professionals for the future of sports management. Participants will master advanced machine learning, AI algorithms, and performance metrics while gaining hands-on experience through industry partnerships and practical case studies.
+        </div>
+
+        <h2 class="modes-title">Course offered in 2 modes</h2>
+
+        <div class="course-modes">
+            <div class="mode-card" onclick="showContent('online')">
+                <div class="mode-icon">🌐</div>
+                <div class="mode-title">Online Mode</div>
+                <div class="mode-description">
+                    Complete flexibility with live interactive sessions, recorded lectures, and virtual collaboration tools
+                </div>
+            </div>
+
+            <div class="mode-card" onclick="showContent('hybrid')">
+                <div class="mode-icon">🌍</div>
+                <div class="mode-title">Hybrid Mode</div>
+                <div class="mode-description">
+                    Online learning combined with intensive in-person experience in Porto, Portugal
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Online Course Content -->
+    <div id="online-content" class="content-section">
+        <div class="container">
+            <a href="#hero" class="back-btn" onclick="backToHome()">← Back to Course Modes</a>
+            
+            
+            <div class="course-outline">
+                <div class="module">
+                    <div class="module-title">Data and Strategy</div>
+                    <div class="module-details">
+                        <span>Learn how data fuels strategy and supports evidence-based decision-making in sports</span>
+                        <span><strong>4 contact hours | 8 total hours</strong> </span>
+                    </div>
+                </div>
+
+                <div class="module">
+                    <div class="module-title">Sports Data Fundamentals</div>
+                    <div class="module-details">
+                        <span>Learn how data is collected, managed, and applied in various sports with decision-making importance</span>
+                        <span><strong>4 contact hours | 8 total hours</strong> </span>
+                    </div>
+                </div>
+
+                <div class="module">
+                    <div class="module-title">Managing Sports Data: Databases and Infrastructure</div>
+                    <div class="module-details">
+                        <span>Organize large volumes of data, ensuring proper storage and efficient access for analysis</span>
+                        <span><strong>4 contact hours | 8 total hours</strong> </span>
+                    </div>
+                </div>
+
+                <div class="module">
+                    <div class="module-title">Data Visualization</div>
+                    <div class="module-details">
+                        <span>Effectively visualize sports data to communicate analysis and results to different audiences</span>
+                        <span><strong>4 contact hours | 8 total hours</strong> </span>
+                    </div>
+                </div>
+
+                <div class="module">
+                    <div class="module-title">Machine Learning and AI in Sports</div>
+                    <div class="module-details">
+                        <span>Use predictive algorithms to improve performance, optimizing tactics based on historical and real-time data</span>
+                        <span><strong>4 contact hours | 8 total hours</strong> </span>
+                    </div>
+                </div>
+
+                <div class="module">
+                    <div class="module-title">Metrics and Performance</div>
+                    <div class="module-details">
+                        <span>Explore key metrics to evaluate both individual player performance and team performance</span>
+                        <span><strong>4 contact hours | 8 total hours</strong> </span>
+                    </div>
+                </div>
+            </div>
+
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Week</th>
+                        <th>Session No.</th>
+                        <th>Date</th>
+                        <th>Module</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>1</td><td>Saturday, 11 October 2025</td><td>Data and Strategy - Part 1</td></tr>
+                    <tr><td>1</td><td>2</td><td>Sunday, 12 October 2025</td><td>Data and Strategy - Part 2</td></tr>
+                    <tr><td>2</td><td>3</td><td>Saturday, 18 October 2025</td><td>Sports Data Fundamentals - Part 1</td></tr>
+                    <tr><td>2</td><td>4</td><td>Sunday, 19 October 2025</td><td>Sports Data Fundamentals - Part 2</td></tr>
+                    <tr><td>3</td><td>5</td><td>Saturday, 25 October 2025</td><td>Managing Sports Data - Part 1</td></tr>
+                    <tr><td>3</td><td>6</td><td>Sunday, 26 October 2025</td><td>Managing Sports Data - Part 2</td></tr>
+                    <tr><td>4</td><td>7</td><td>Saturday, 01 November 2025</td><td>Data Visualization - Part 1</td></tr>
+                    <tr><td>4</td><td>8</td><td>Sunday, 02 November 2025</td><td>Data Visualization - Part 2</td></tr>
+                    <tr><td>5</td><td>9</td><td>Saturday, 08 November 2025</td><td>Machine Learning and AI - Part 1</td></tr>
+                    <tr><td>5</td><td>10</td><td>Sunday, 09 November 2025</td><td>Machine Learning and AI - Part 2</td></tr>
+                    <tr><td>6</td><td>11</td><td>Saturday, 15 November 2025</td><td>Machine Learning and AI - Part 3</td></tr>
+                    <tr><td>6</td><td>12</td><td>Sunday, 16 November 2025</td><td>Machine Learning and AI - Part 4</td></tr>
+                    <tr><td>7</td><td>13</td><td>Saturday, 22 November 2025</td><td>Metrics and Performance - Part 1</td></tr>
+                    <tr><td>7</td><td>14</td><td>Sunday, 23 November 2025</td><td>Metrics and Performance - Part 2</td></tr>
+                    <tr><td>8</td><td>15</td><td>Saturday, 29 November 2025</td><td>Metrics and Performance - Part 3</td></tr>
+                    <tr><td>8</td><td>16</td><td>Sunday, 30 November 2025</td><td>Final Assessment & Certification</td></tr>
+                </tbody>
+            </table>
+
+            <div class="total-hours">📊 Total Course Hours: 24 Contact Hours | 48 Total Hours</div>
+        </div>
+    </div>
+
+    <!-- Hybrid Course Content -->
+    <div id="hybrid-content" class="content-section">
+        <div class="container">
+            <a href="#hero" class="back-btn" onclick="backToHome()">← Back to Course Modes</a>
+            
+            <h2 class="section-title">🌍 Hybrid Course Schedule & Outline</h2>
+            
+            <div class="course-outline">
+                <div class="module">
+                    <div class="module-title">Online Component</div>
+                    <div class="module-details">
+                        <span>Complete the same comprehensive online curriculum as the full online course</span>
+                        <span><strong>24 contact hours | 48 total hours</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Week</th>
+                        <th>Session No.</th>
+                        <th>Date</th>
+                        <th>Module</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>1</td><td>Saturday, 11 October 2025</td><td>Data and Strategy - Part 1</td></tr>
+                    <tr><td>1</td><td>2</td><td>Sunday, 12 October 2025</td><td>Data and Strategy - Part 2</td></tr>
+                    <tr><td>2</td><td>3</td><td>Saturday, 18 October 2025</td><td>Sports Data Fundamentals - Part 1</td></tr>
+                    <tr><td>2</td><td>4</td><td>Sunday, 19 October 2025</td><td>Sports Data Fundamentals - Part 2</td></tr>
+                    <tr><td>3</td><td>5</td><td>Saturday, 25 October 2025</td><td>Managing Sports Data - Part 1</td></tr>
+                    <tr><td>3</td><td>6</td><td>Sunday, 26 October 2025</td><td>Managing Sports Data - Part 2</td></tr>
+                    <tr><td>4</td><td>7</td><td>Saturday, 01 November 2025</td><td>Data Visualization - Part 1</td></tr>
+                    <tr><td>4</td><td>8</td><td>Sunday, 02 November 2025</td><td>Data Visualization - Part 2</td></tr>
+                    <tr><td>5</td><td>9</td><td>Saturday, 08 November 2025</td><td>Machine Learning and AI - Part 1</td></tr>
+                    <tr><td>5</td><td>10</td><td>Sunday, 09 November 2025</td><td>Machine Learning and AI - Part 2</td></tr>
+                    <tr><td>6</td><td>11</td><td>Saturday, 15 November 2025</td><td>Machine Learning and AI - Part 3</td></tr>
+                    <tr><td>6</td><td>12</td><td>Sunday, 16 November 2025</td><td>Machine Learning and AI - Part 4</td></tr>
+                    <tr><td>7</td><td>13</td><td>Saturday, 22 November 2025</td><td>Metrics and Performance - Part 1</td></tr>
+                    <tr><td>7</td><td>14</td><td>Sunday, 23 November 2025</td><td>Metrics and Performance - Part 2</td></tr>
+                    <tr><td>8</td><td>15</td><td>Saturday, 29 November 2025</td><td>Metrics and Performance - Part 3</td></tr>
+                    <tr><td>8</td><td>16</td><td>Sunday, 30 November 2025</td><td>Final Assessment</td></tr>
+                </tbody>
+            </table>
+
+            <div class="hybrid-schedule">
+                <div class="porto-title">In-Person Experience in Porto, Portugal (Optional with Certificate)</div>
+                
+                <div class="week-schedule">
+                    <div class="day-schedule">
+                        <div class="day-title">Monday</div>
+                        <div class="time-slot">
+                            <div class="time">9h-11h</div>
+                            <div class="activity"><strong>Arriving</strong></div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time">11h-11h30</div>
+                            <div class="activity"><strong>Welcome</strong></div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time">11h30-12h30</div>
+                            <div class="activity"><strong>Masterclass on Health & Sports Lifestyle</strong> (CUF Guest Speaker)</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time">12h30-14h</div>
+                            <div class="activity"><strong>Lunch</strong></div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time">14h-16h</div>
+                            <div class="activity"><strong>Visit SC Braga & Sports City</strong></div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time">16h-16h30</div>
+                            <div class="activity"><strong>Coffee-break</strong></div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time">16h30-17h30</div>
+                            <div class="activity"><strong>Masterclass on Strategy in Gym & Wellness Industry</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="day-schedule">
+                        <div class="day-title">Tuesday</div>
+                        <div class="time-slot">
+                            <div class="time">9h-11h</div>
+                            <div class="activity"><strong>Visit and Masterclass Sports Analytics and AI</strong> in zerozero.pt</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time">12h30-14h</div>
+                            <div class="activity"><strong>Lunch</strong></div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time">14h-16h</div>
+                            <div class="activity"><strong>Panel on the importance of Sports Analytics</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="day-schedule">
+                        <div class="day-title">Wednesday</div>
+                        <div class="time-slot">
+                            <div class="time">9h-11h</div>
+                            <div class="activity"><strong>Fan Engagement & Digital Strategy</strong> and visit at Liga Portuguesa</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time">12h30-14h</div>
+                            <div class="activity"><strong>Lunch</strong></div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time">14h-16h</div>
+                            <div class="activity"><strong>Visit to FC Porto + Museum Tour</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="day-schedule">
+                        <div class="day-title">Thursday</div>
+                        <div class="time-slot">
+                            <div class="time">9h-11h</div>
+                            <div class="activity"><strong>Visit a High Performance Sports Centre</strong></div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time">12h30-14h</div>
+                            <div class="activity"><strong>Lunch</strong></div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time">14h-16h</div>
+                            <div class="activity"><strong>Porto Cultural City Tour</strong></div>
+                        </div>
+                    </div>
+
+                    <div class="day-schedule">
+                        <div class="day-title">Friday</div>
+                        <div class="time-slot">
+                            <div class="time">9h-11h</div>
+                            <div class="activity"><strong>Feel Viana</strong> (Masterclass and visit Tourism & Lifestyle)</div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time">12h30-14h</div>
+                            <div class="activity"><strong>Lunch</strong></div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time">14h-16h</div>
+                            <div class="activity"><strong>Free time</strong></div>
+                        </div>
+                        <div class="time-slot">
+                            <div class="time">19h30-21h30</div>
+                            <div class="activity"><strong>Closing Networking Dinner Porto</strong></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="total-hours"> Porto Experience: 35 Additional Hours</div>
+            </div>
+
+            <div class="total-hours">📊 Total Hybrid Course Hours: 59 Contact Hours | 83 Total Hours</div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact-section">
+        <h2 class="contact-title">📞 Contact Information & Enquiry Form</h2>
+        
+        <div class="contact-info">
+            <h3>Course Coordinator</h3>
+            <p><strong>Dr. Rajesh Kumar K V</strong></p>
+            <p>Co-Chairperson COE-Sports Analytics and Management</p>
+            <p>Woxsen University, India</p>
+            <p>Email: <a href="mailto:coe.sm@woxsen.edu.in">coe.sm@woxsen.edu.in</a></p>
+        </div>
+
+        <form class="enquiry-form" onsubmit="submitForm(event)">
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required placeholder="your.email@domain.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="+1234567890">
+            </div>
+            
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input type="text" id="country" name="country" placeholder="Your country">
+            </div>
+            
+            <div class="form-group">
+                <label for="course-mode">Preferred Course Mode *</label>
+                <select id="course-mode" name="course-mode" required>
+                    <option value="">Select course mode</option>
+                    <option value="online">Online Mode</option>
+                    <option value="hybrid">Hybrid Mode (Online + Porto)</option>
+                    <option value="undecided">Need more information</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="background">Educational/Professional Background</label>
+                <input type="text" id="background" name="background" placeholder="e.g., Sports Management, Data Science, Engineering">
+            </div>
+            
+            <div class="form-group" style="grid-column: 1 / -1;">
+                <label for="message">Message / Questions</label>
+                <textarea id="message" name="message" rows="4" placeholder="Tell us about your interest in the course, any specific questions, or additional information you'd like to share..."></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Enquiry</button>
+        </form>
+    </div>
+
+    <script>
+        function showContent(mode) {
+            document.getElementById('hero').style.display = 'none';
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(mode + '-content').classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function backToHome() {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById('hero').style.display = 'flex';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            const subject = `Course Enquiry: Sports Data Analytics Certification - ${data['course-mode']}`;
+            const body = `
+Dear Course Coordinator,
+
+I am interested in the Sports Data Analytics Certification Course. Please find my details below:
+
+Name: ${data.name}
+Email: ${data.email}
+Phone: ${data.phone || 'Not provided'}
+Country: ${data.country || 'Not provided'}
+Preferred Course Mode: ${data['course-mode']}
+Educational/Professional Background: ${data.background || 'Not provided'}
+
+Message:
+${data.message || 'No additional message'}
+
+Best regards,
+${data.name}
+            `.trim();
+            
+            const mailtoLink = `mailto:coe.sm@woxsen.edu.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
+            alert('Email client opened! Please send the email to complete your enquiry.');
+            event.target.reset();
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in-out';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
